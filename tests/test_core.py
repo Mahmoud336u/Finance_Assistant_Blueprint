@@ -20,6 +20,16 @@ class FinanceAssistantTests(unittest.TestCase):
         self.assertEqual(len(rows), 1)
         self.assertEqual(rows[0].category, "Food")
 
+    def test_csv_upload_skips_blank_lines(self):
+        csv_content = "date,description,amount\n2026-05-01,Supermarket,120.50\n,,\n"
+        rows = load_transactions_from_csv(csv_content)
+        self.assertEqual(len(rows), 1)
+
+    def test_csv_upload_requires_amount_for_non_blank_rows(self):
+        csv_content = "date,description,amount\n2026-05-01,Supermarket,\n"
+        with self.assertRaises(ValueError):
+            load_transactions_from_csv(csv_content)
+
     def test_plaid_integration(self):
         payload = {
             "transactions": [

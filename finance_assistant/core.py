@@ -46,14 +46,24 @@ def load_transactions_from_csv(csv_content: str) -> list[Transaction]:
 
     normalized: list[Transaction] = []
     for row in reader:
-        if not row:
+        date = (row.get("date") or "").strip()
+        description = (row.get("description") or "").strip()
+        amount_text = (row.get("amount") or "").strip()
+        category = (row.get("category") or "").strip() or None
+
+        has_context = any((date, description, category))
+        if not has_context and not amount_text:
             continue
+
+        if has_context and not amount_text:
+            raise ValueError("Each transaction row must include an amount.")
+
         normalized.append(
             _normalize_transaction(
-                date=(row.get("date") or "").strip(),
-                description=(row.get("description") or "").strip(),
-                amount=float((row.get("amount") or "0").strip()),
-                category=(row.get("category") or "").strip() or None,
+                date=date,
+                description=description,
+                amount=float(amount_text),
+                category=category,
             )
         )
     return normalized
