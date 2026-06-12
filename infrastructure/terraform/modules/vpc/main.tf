@@ -6,6 +6,7 @@ locals {
     },
     var.tags
   )
+  first_public_subnet_id = aws_subnet.public["0"].id
 }
 
 resource "aws_vpc" "this" {
@@ -40,7 +41,7 @@ resource "aws_subnet" "public" {
   map_public_ip_on_launch = true
 
   tags = merge(local.common_tags, {
-    Name = "${var.name}-public-${each.key + 1}"
+    Name = "${var.name}-public-${tonumber(each.key) + 1}"
     Tier = "public"
   })
 }
@@ -58,7 +59,7 @@ resource "aws_subnet" "private" {
   availability_zone = each.value.az
 
   tags = merge(local.common_tags, {
-    Name = "${var.name}-private-${each.key + 1}"
+    Name = "${var.name}-private-${tonumber(each.key) + 1}"
     Tier = "private"
   })
 }
@@ -77,7 +78,7 @@ resource "aws_nat_gateway" "this" {
   count = var.enable_nat_gateway ? 1 : 0
 
   allocation_id = aws_eip.nat[0].id
-  subnet_id     = aws_subnet.public[0].id
+  subnet_id     = local.first_public_subnet_id
 
   tags = merge(local.common_tags, {
     Name = "${var.name}-nat"
