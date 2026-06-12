@@ -1,0 +1,5 @@
+bucket         = "finance-assistant-terraform-state"
+key            = "dev/terraform.tfstate"
+region         = "us-east-1"
+dynamodb_table = "finance-assistant-terraform-locks"
+encrypt        = true
