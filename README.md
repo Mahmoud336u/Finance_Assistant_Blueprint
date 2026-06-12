@@ -230,7 +230,7 @@ Every sprint updates `CHANGELOG.md`. Every major decision — including reversed
 
 ## 13. Velocity and resourcing assumptions
 
-This plan assumes a single developer working roughly 12–15 focused hours per week during academic terms and up to 30 hours per week during breaks, giving each two-week sprint a working budget of approximately 24–30 hours. AI-assisted development is used deliberately for boilerplate — Terraform module scaffolding, CRUD endpoints, test scaffolding — and the velocity figures above already assume that acceleration; the recovered time is intentionally reinvested in design, testing, and documentation rather than additional features. A one-week buffer after every three sprints (Section 3) exists to absorb the inevitable slippage without it cascading through the rest of the plan — if a buffer week goes unused, pull the next sprint forward rather than starting new work early.
+This plan for a single developer working roughly 12–15 focused hours per week during academic terms and up to 30 hours per week during breaks, giving each two-week sprint a working budget of approximately 24–30 hours. AI-assisted development is used deliberately for boilerplate — Terraform module scaffolding, CRUD endpoints, test scaffolding — and the velocity figures above already assume that acceleration; the recovered time is intentionally reinvested in design, testing, and documentation rather than additional features. A one-week buffer after every three sprints (Section 3) exists to absorb the inevitable slippage without it cascading through the rest of the plan — if a buffer week goes unused, pull the next sprint forward rather than starting new work early.
 
 ---
 
