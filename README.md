@@ -9,7 +9,8 @@ A minimal AI-driven budgeting blueprint with:
 
 ## Quick usage
 
-Set `PYTHONPATH` so Python can import the package from `services/api-gateway`.
+Set `PYTHONPATH` when running commands, for example:
+`PYTHONPATH=services/api-gateway python -m unittest discover -s services/api-gateway/tests -v`.
 
 ```python
 from finance_assistant.core import (
