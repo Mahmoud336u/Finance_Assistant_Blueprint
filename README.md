@@ -9,6 +9,9 @@ A minimal AI-driven budgeting blueprint with:
 
 ## Quick usage
 
+Set `PYTHONPATH` when running commands, for example:
+`PYTHONPATH=services/api-gateway python -m unittest discover -s services/api-gateway/tests -v`.
+
 ```python
 from finance_assistant.core import (
     load_transactions_from_csv,
@@ -33,5 +36,5 @@ suggestions = generate_budget_suggestions(transactions + plaid_transactions, mon
 ## Tests
 
 ```bash
-python -m unittest discover -v
+PYTHONPATH=services/api-gateway python -m unittest discover -s services/api-gateway/tests -v
 ```
