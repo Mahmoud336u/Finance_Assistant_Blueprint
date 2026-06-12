@@ -24,6 +24,17 @@ The plan assumes a solo developer working part-time, with AI-assisted developmen
 
 A phase is not considered production-ready just because the code runs. The bar is: all infrastructure is defined in Terraform and reproducible from a clean account; every service has automated tests and a CI pipeline that blocks merges on failure; every deployment is observable (metrics, traces, logs) and reversible (blue-green with automatic rollback); every security control (auth, WAF, secrets management, audit trail) is active, not theoretical; and every SLO in Section 2.2 has a dashboard showing the current value against the target.
 
+### 1.2 Getting started (current foundation scaffold)
+
+1. Start the placeholder API locally:
+   - `docker-compose up`
+   - Health endpoint: `http://localhost:8000/health`
+2. Run current tests:
+   - `PYTHONPATH=services/api-gateway python -m unittest discover -s services/api-gateway/tests -v`
+3. Initialize Terraform dev environment:
+   - `terraform -chdir=infrastructure/terraform/envs/dev init -backend-config=backend.hcl.example`
+   - `terraform -chdir=infrastructure/terraform/envs/dev plan`
+
 ---
 
 ## 2. Objectives and success criteria
